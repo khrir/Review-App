@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/screens/home.dart';
-import 'package:review_app/screens/login_screen.dart';
+import 'package:review_app/pages/home/home.dart';
+// import 'package:review_app/screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Quebra',
-      home: LoginScreen(),
+      home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

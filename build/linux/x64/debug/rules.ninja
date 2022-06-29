@@ -42,7 +42,7 @@ rule CXX_EXECUTABLE_LINKER__review_app
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /snap/flutter/126/usr/bin/cmake -H/home/khrir/Documents/Repositorios/Review-App/review_app/linux -B/home/khrir/Documents/Repositorios/Review-App/review_app/build/linux/x64/debug
+  command = /snap/flutter/126/usr/bin/cmake -H/home/khrir/Documents/Repositorios/Review-App/Review-App/linux -B/home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug
   description = Re-running CMake...
   generator = 1
 

@@ -1,8 +1,8 @@
-# Install script for directory: /home/khrir/Documents/Repositorios/Review-App/review_app/linux/flutter
+# Install script for directory: /home/khrir/Documents/Repositorios/Review-App/Review-App/linux/flutter
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/khrir/Documents/Repositorios/Review-App/review_app/build/linux/x64/debug/bundle")
+  set(CMAKE_INSTALL_PREFIX "/home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
