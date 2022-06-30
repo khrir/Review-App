@@ -4,7 +4,7 @@
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/version.json
-/home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/assets/review-logo.png
+/home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/assets/images/review-logo.png
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
 /home/khrir/Documents/Repositorios/Review-App/Review-App/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
