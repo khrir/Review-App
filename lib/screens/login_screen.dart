@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 55.0),
+                  padding: const EdgeInsets.only(top: 35.0),
                   child: Image.asset(
                     "assets/review-logo.png",
                     height: 125,
@@ -62,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
                     "Email",
@@ -71,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 SizedBox(
                   height: 35,
@@ -80,8 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       fillColor: Colors.white,
                       filled: true,
                       focusColor: Colors.white,
-                      labelText: "Digite seu email",
-                      labelStyle: TextStyle(color: Colors.black54),
+                      hintText: "Digite seu email",
+                      hintStyle: TextStyle(color: Colors.black54),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
@@ -92,6 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 35, bottom: 10),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
                     "Senha",
@@ -101,6 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 SizedBox(
                   height: 35,
@@ -110,8 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
-                      labelText: "Digite sua senha",
-                      labelStyle: TextStyle(color: Colors.black54),
+                      hintText: "Digite sua senha",
+                      hintStyle: TextStyle(color: Colors.black54),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
