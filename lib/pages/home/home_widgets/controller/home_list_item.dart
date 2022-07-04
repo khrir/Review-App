@@ -38,13 +38,23 @@ class _HomeListItemState extends State<HomeListItem> {
                 ),
                 Text("${widget.homeListModel.qtdTopicos} de 50 tópicos revisados"),
                 // Add progress bar
+                const SizedBox(height: 15),
+                const SizedBox(
+                  width: 300,
+                  height: 20,
+                  child: LinearProgressIndicator(
+                    value: 0.01,
+                    valueColor: AlwaysStoppedAnimation(Colors.green),
+                    backgroundColor: Color.fromARGB(255, 227, 226, 226),
+                  ),
+                ),
               ],
             ),        
           ),
           Container(
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
-              color: Colors.grey,
+              color: Color.fromARGB(255, 227, 226, 226),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(7),
                 bottomRight: Radius.circular(7),
