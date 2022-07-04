@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/pages/home/home_widgets/home_list_model.dart';
+import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
 class HomeListItem extends StatefulWidget {
   final HomeListModel homeListModel;
