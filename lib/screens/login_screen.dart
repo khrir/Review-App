@@ -11,21 +11,8 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2C0469),
-        leading: const Icon(Icons.arrow_back_ios_new_outlined),
-        title: const Text(
-          'Login',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
       body: Container(
-        height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.symmetric(horizontal: 50),
+        padding: const EdgeInsets.only(top: 20, left: 45, right: 45),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -36,146 +23,153 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-        child: SingleChildScrollView(
-          child: Column(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                const Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 7),
+                    child: Text(
+                      "Login",
+                      textScaleFactor: 2.5,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () => {},
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 35,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 15,
-                  ),
+                  padding: const EdgeInsets.only(top: 55.0),
                   child: Image.asset(
                     "assets/review-logo.png",
                     height: 125,
                   ),
-                ),
-                Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(
-                          bottom: 15,
-                        ),
-                        child: Text(
-                          "E-mail",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        autofocus: true,
-                        decoration: const InputDecoration(
-                          hintText: "Insira seu e-mail",
-                          hintStyle: TextStyle(color: Colors.white),
-                          prefixIcon: Icon(
-                            Icons.mail_outline,
-                            color: Colors.white,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          "Senha",
-                          // textAlign: TextAlign.right,
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                          ),
-                        ),
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          hintText: "Insira sua senha",
-                          hintStyle: TextStyle(color: Colors.white),
-                          prefixIcon: Icon(
-                            Icons.vpn_key_outlined,
-                            color: Colors.white,
-                          ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40, bottom: 10),
+              child: Row(
+                children: const [
+                  Text(
+                    "Email",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: const [
+                SizedBox(
+                  height: 35,
+                  width: 300,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      focusColor: Colors.white,
+                      labelText: "Digite seu email",
+                      labelStyle: TextStyle(color: Colors.black54),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40),
-                  child: ElevatedButton(
-                    onPressed: (){}, 
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: const Color(0xFF2C0469),
-                      primary: Colors.white,  
-                      minimumSize: const Size(120, 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),             
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 35, bottom: 10),
+              child: Row(
+                children: const [
+                  Text(
+                    "Senha",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            Row(
+              children: const [
+                SizedBox(
+                  height: 35,
+                  width: 300,
+                  child: TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      labelText: "Digite sua senha",
+                      labelStyle: TextStyle(color: Colors.black54),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8))),
                     ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 50,
+                      ),
+                    ),
+                    onPressed: () => {},
                     child: const Text(
                       "Entrar",
                       style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                        color: Colors.purple,
                       ),
                     ),
                   ),
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: RichText(
-                    text: const TextSpan(
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 200,
+                  padding: const EdgeInsets.only(top: 30),
+                  child: Text.rich(
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                    TextSpan(
+                      text: "Ainda não possui cadastro? ",
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Ainda não realizou o seu cadastro?",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        TextSpan(
-                          text: " Cadastre-se!",
+                          text: "cadastre-se",
                           style: TextStyle(
                             decoration: TextDecoration.underline,
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-              ]),
+              ],
+            )
+          ],
         ),
       ),
     );
