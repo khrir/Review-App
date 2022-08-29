@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/screens/answer_screen.dart';
+import 'package:review_app/pages/cards/answer_screen.dart';
 
-import '../widgets/app_bar.dart';
+import '../app_bar/app_bar.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
+      appBar: getHomeAppBar(),
       body: body(context),
     );
   }
