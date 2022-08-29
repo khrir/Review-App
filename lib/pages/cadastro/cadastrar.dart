@@ -133,7 +133,14 @@ class _CadastrarState extends State<Cadastrar> {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const login_screen())
+                                    )
+                  },
                   style: ElevatedButton.styleFrom(
                     onPrimary: const Color(0xFF2C0469),
                     primary: Colors.white,
