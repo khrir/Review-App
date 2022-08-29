@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/home/home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -135,7 +136,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         horizontal: 50,
                       ),
                     ),
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const HomePage())
+                                      )
+                    },
                     child: const Text(
                       "Entrar",
                       style: TextStyle(
@@ -152,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: 200,
                   padding: const EdgeInsets.only(top: 30),
-                  child: const Text.rich(
+                  child: Text.rich(
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,

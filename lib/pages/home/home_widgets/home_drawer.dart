@@ -18,7 +18,7 @@ Drawer getHomeDrawer() {
         children: [
           DrawerHeader(
             child: Image.asset(
-              'assets/images/review-logo.png',
+              'assets/img/review-logo.png',
               height: 20,
             ),
           ),

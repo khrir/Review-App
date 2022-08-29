@@ -3,14 +3,14 @@ import 'package:review_app/pages/app_bar/app_bar.dart';
 import 'package:review_app/pages/home/home_widgets/home_content.dart';
 import 'package:review_app/pages/home/home_widgets/home_drawer.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
