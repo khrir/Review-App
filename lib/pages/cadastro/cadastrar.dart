@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/login/login_screen.dart';
 
 class Cadastrar extends StatefulWidget {
   const Cadastrar({Key? key}) : super(key: key);
@@ -133,12 +134,19 @@ class _CadastrarState extends State<Cadastrar> {
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const LoginScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                     onPrimary: const Color(0xFF2C0469),
                     primary: Colors.white,
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
                   child: const Text(
                     "Cadastrar",
@@ -206,7 +214,8 @@ class _CadastrarState extends State<Cadastrar> {
                       onPrimary: const Color(0xFFFFFFFF),
                       primary: const Color(0xFF1877F2),
                       minimumSize: const Size(120, 50),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
                     ),
                     child: const Text(
                       "Continuar pelo Facebook",
@@ -235,7 +244,8 @@ class _CadastrarState extends State<Cadastrar> {
                     onPrimary: const Color(0xFFFFFFFF),
                     primary: const Color(0xFF000000),
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
                   child: const Text(
                     "Continuar pelo Google",
