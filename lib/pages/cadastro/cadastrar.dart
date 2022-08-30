@@ -8,6 +8,7 @@ class Cadastrar extends StatefulWidget {
 }
 
 class _CadastrarState extends State<Cadastrar> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -140,7 +141,7 @@ class _CadastrarState extends State<Cadastrar> {
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
                                 const LoginScreen()));
-                  },
+                    },
                   style: ElevatedButton.styleFrom(
                     onPrimary: const Color(0xFF2C0469),
                     primary: Colors.white,
