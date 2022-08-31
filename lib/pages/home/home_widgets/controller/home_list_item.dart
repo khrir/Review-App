@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/cards/question_screen.dart';
 import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
 class HomeListItem extends StatefulWidget {
@@ -61,13 +62,25 @@ class _HomeListItemState extends State<HomeListItem> {
               ),
             ),
             padding: const EdgeInsets.all(10),
-            child: Column(
-              children: const [
-                Text(
-                  "Praticar",
-                  style: TextStyle(fontSize: 22, color: Color.fromRGBO(57, 57, 57, 1)),
-                ),
-              ],
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        const QuestionPage()));
+                    },
+                  child: const Center(
+                    child: Text(
+                      "Praticar",
+                      style: TextStyle(fontSize: 22, color: Color.fromRGBO(57, 57, 57, 1)),
+                    ),
+                  ),
+                ), 
+              )],
             )
           ),
         ],
