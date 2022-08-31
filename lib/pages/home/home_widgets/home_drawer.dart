@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/home/home.dart';
+import 'package:review_app/pages/login/login_screen.dart';
 
-Drawer getHomeDrawer() {
+Drawer getHomeDrawer(context) {
   return Drawer(
     child: Container(
       decoration: const BoxDecoration(
@@ -22,47 +24,76 @@ Drawer getHomeDrawer() {
               height: 20,
             ),
           ),
-          const ListTile(
-            leading: Icon(
-              Icons.home,
-              color: Colors.white,
-            ),
-            title: Text(
-              "Área de estudo",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+          Material(
+          type:MaterialType.transparency,
+            child: ListTile(
+            hoverColor: Color.fromARGB(255, 27, 3, 63),
+              leading: const Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Área de estudo",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {    
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+              },
             ),
           ),
-          
-          const ListTile(
-            leading: Icon(
+          Material(
+            type:MaterialType.transparency,
+            child: ListTile(
+            hoverColor: Color.fromARGB(255, 27, 3, 63),
+            enabled:true,
+            leading:  const Icon(
               Icons.login_outlined,
               color: Colors.white,
             ),
-            title: Text(
+            title: const Text(
               "Login",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
+            },
           ),
-          const ListTile(
-            leading: Icon(
-              Icons.support,
-              color: Colors.white,
-            ),
-            title: Text(
-              "Sobre o Review",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
-          const ListTile(
-            leading: Icon(
-              Icons.settings,
-              color: Colors.white,
-            ),
-            title: Text(
-              "Configurações",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          ),
+        ),
+          
+           Material(
+            type:MaterialType.transparency,
+            child: ListTile(
+            hoverColor: Color.fromARGB(255, 27, 3, 63),
+              leading:  const Icon(
+                Icons.support,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Sobre o Review",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>  Container(child: const Text("Tarsis corno"),)));
+              },
+                     ),
+           ),
+           Material(
+            type:MaterialType.transparency,
+             child: ListTile(
+              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Configurações",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+              },
+                     ),
+           ),
         ],
       ),
     ),
