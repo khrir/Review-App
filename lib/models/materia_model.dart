@@ -1,9 +1,9 @@
-import 'package:review_app/models/questao_model.dart';
+import 'package:review_app/models/question_model.dart';
 
 class MateriaModel {
-  final String id;
+  final int id;
   final String name;
-  final List<Questao> listQuestao;
+  final List<QuestionModel> listQuestao;
 
   MateriaModel({
     required this.id,
