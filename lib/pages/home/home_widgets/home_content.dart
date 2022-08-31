@@ -40,24 +40,3 @@ class _HomePageContentState extends State<HomePageContent> {
     );
   }
 }
-
-// Lógica alternativa
-// return Container(
-//             child: Row(
-//               children: [
-//                 Expanded(
-//                   child: GestureDetector(
-//                     onTap: () {
-//                       Navigator.push(
-//                                 context,
-//                                 MaterialPageRoute(
-//                                     builder: (BuildContext context) =>
-//                                         const QuestionPage()));
-//                     },
-//                     child: HomeListItem(
-//                       homeListModel: listMockedList[index],
-//                   ),
-//                 ),
-//               )],
-//             ),
-//           );

@@ -5,14 +5,15 @@ import 'package:review_app/pages/cards/answer_screen.dart';
 import '../app_bar/app_bar.dart';
 
 class QuestionPage extends StatefulWidget {
-  // final MateriaModel materiaModel;
-  const QuestionPage({Key? key, }) : super(key: key);
+  final MateriaModel materiaModel;
+  const QuestionPage({Key? key, required this.materiaModel}) : super(key: key);
 
   @override
   State<QuestionPage> createState() => _QuestionPageState();
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

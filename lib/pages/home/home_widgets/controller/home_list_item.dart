@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/data/materia_data_sample.dart';
+import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/cards/question_screen.dart';
 import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
@@ -12,6 +14,8 @@ class HomeListItem extends StatefulWidget {
 }
 
 class _HomeListItemState extends State<HomeListItem> {
+  final materia = MateriaDataSample.materiaList;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +41,8 @@ class _HomeListItemState extends State<HomeListItem> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text("${widget.homeListModel.qtdTopicos} de 10 tópicos revisados"),
+                Text(
+                    "${widget.homeListModel.qtdTopicos} de 10 tópicos revisados"),
                 // Add progress bar
                 const SizedBox(height: 15),
                 const SizedBox(
@@ -50,39 +55,44 @@ class _HomeListItemState extends State<HomeListItem> {
                   ),
                 ),
               ],
-            ),        
+            ),
           ),
           Container(
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 227, 226, 226),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(7),
-                bottomRight: Radius.circular(7),
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 227, 226, 226),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(7),
+                  bottomRight: Radius.circular(7),
+                ),
               ),
-            ),
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        const QuestionPage()));
-                    },
-                  child: const Center(
-                    child: Text(
-                      "Praticar",
-                      style: TextStyle(fontSize: 22, color: Color.fromRGBO(57, 57, 57, 1)),
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    QuestionPage(
+                                      // TODO: implementar um verificador para enviar a matéria correta de acordo com o nome
+                                      materiaModel: (materia[0]),
+                                    )));
+                      },
+                      child: const Center(
+                        child: Text(
+                          "Praticar",
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Color.fromRGBO(57, 57, 57, 1)),
+                        ),
+                      ),
                     ),
-                  ),
-                ), 
-              )],
-            )
-          ),
+                  )
+                ],
+              )),
         ],
       ),
     );
