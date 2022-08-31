@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/data/home_list_sample.dart';
 import 'package:review_app/pages/home/home_widgets/controller/home_list_item.dart';
 import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
@@ -10,12 +11,7 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<HomePageContent> {
-  List<HomeListModel> listMockedList = [
-    HomeListModel(materiaName: "Português", qtdTopicos: 2),
-    HomeListModel(materiaName: "Matemática", qtdTopicos: 7),
-    HomeListModel(materiaName: "História", qtdTopicos: 0),
-    HomeListModel(materiaName: "English", qtdTopicos: 3),
-  ];
+  static List<HomeListModel> listMocked = HomeListSample.listMocked;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,13 +30,34 @@ class _HomePageContentState extends State<HomePageContent> {
         horizontal: 20,
       ),
       child: ListView.builder(
-        itemCount: listMockedList.length,
+        itemCount: listMocked.length,
         itemBuilder: (context, index) {
           return HomeListItem(
-            homeListModel: listMockedList[index],
+            homeListModel: listMocked[index],
           );
         },
       ),
     );
   }
 }
+
+// Lógica alternativa
+// return Container(
+//             child: Row(
+//               children: [
+//                 Expanded(
+//                   child: GestureDetector(
+//                     onTap: () {
+//                       Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (BuildContext context) =>
+//                                         const QuestionPage()));
+//                     },
+//                     child: HomeListItem(
+//                       homeListModel: listMockedList[index],
+//                   ),
+//                 ),
+//               )],
+//             ),
+//           );

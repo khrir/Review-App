@@ -4,7 +4,7 @@ import 'package:review_app/data/question_data_sample.dart';
 // TODO: seria bom fazer um verificar para comparar o id da matéria com o id_fk da questão.
 
 class MateriaDataSample {
-  List<MateriaModel> materiaList = [
+  static List<MateriaModel> materiaList = [
     MateriaModel(
       id: 1,
       name: 'Matemática',

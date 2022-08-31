@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/cards/answer_screen.dart';
 
 import '../app_bar/app_bar.dart';
 
 class QuestionPage extends StatefulWidget {
-  const QuestionPage({Key? key}) : super(key: key);
+  // final MateriaModel materiaModel;
+  const QuestionPage({Key? key, }) : super(key: key);
 
   @override
   State<QuestionPage> createState() => _QuestionPageState();
