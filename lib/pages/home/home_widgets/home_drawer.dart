@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/pages/home/home.dart';
 import 'package:review_app/pages/login/login_screen.dart';
+import 'package:review_app/pages/sobrereview/sobrereview.dart';
 
 Drawer getHomeDrawer(context) {
   return Drawer(
@@ -25,9 +26,9 @@ Drawer getHomeDrawer(context) {
             ),
           ),
           Material(
-          type:MaterialType.transparency,
+            type: MaterialType.transparency,
             child: ListTile(
-            hoverColor: Color.fromARGB(255, 27, 3, 63),
+              hoverColor: Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
                 Icons.home,
                 color: Colors.white,
@@ -36,35 +37,41 @@ Drawer getHomeDrawer(context) {
                 "Área de estudo",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              onTap: () {    
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const HomePage()));
               },
             ),
           ),
           Material(
-            type:MaterialType.transparency,
+            type: MaterialType.transparency,
             child: ListTile(
-            hoverColor: Color.fromARGB(255, 27, 3, 63),
-            enabled:true,
-            leading:  const Icon(
-              Icons.login_outlined,
-              color: Colors.white,
+              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              enabled: true,
+              leading: const Icon(
+                Icons.login_outlined,
+                color: Colors.white,
+              ),
+              title: const Text(
+                "Login",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const LoginScreen()));
+              },
             ),
-            title: const Text(
-              "Login",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const LoginScreen()));
-            },
           ),
-        ),
-          
-           Material(
-            type:MaterialType.transparency,
+          Material(
+            type: MaterialType.transparency,
             child: ListTile(
-            hoverColor: Color.fromARGB(255, 27, 3, 63),
-              leading:  const Icon(
+              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              leading: const Icon(
                 Icons.support,
                 color: Colors.white,
               ),
@@ -73,13 +80,17 @@ Drawer getHomeDrawer(context) {
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) =>  Container(child: const Text("Tarsis corno"),)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const Sobrereview()));
               },
-                     ),
-           ),
-           Material(
-            type:MaterialType.transparency,
-             child: ListTile(
+            ),
+          ),
+          Material(
+            type: MaterialType.transparency,
+            child: ListTile(
               hoverColor: Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
                 Icons.settings,
@@ -90,10 +101,13 @@ Drawer getHomeDrawer(context) {
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const HomePage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => const HomePage()));
               },
-                     ),
-           ),
+            ),
+          ),
         ],
       ),
     ),
