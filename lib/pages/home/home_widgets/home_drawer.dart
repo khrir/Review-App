@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:review_app/pages/home/home.dart';
 import 'package:review_app/pages/login/login_screen.dart';
 import 'package:review_app/pages/sobrereview/sobrereview.dart';
+import 'package:review_app/pages/profile/profile_page.dart';
 
 Drawer getHomeDrawer(context) {
   return Drawer(
@@ -93,18 +94,18 @@ Drawer getHomeDrawer(context) {
             child: ListTile(
               hoverColor: Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
-                Icons.settings,
+                Icons.person,
                 color: Colors.white,
               ),
               title: const Text(
-                "Configurações",
+                "Meu perfil",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
               onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => const HomePage()));
+                        builder: (BuildContext context) => ProfilePage()));
               },
             ),
           ),
