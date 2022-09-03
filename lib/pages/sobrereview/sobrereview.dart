@@ -30,7 +30,7 @@ class _SobrereviewState extends State<Sobrereview> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 7),
                   child: Text(
-                    "Sobre o review",
+                    "Sobre o Review",
                     textScaleFactor: 2.5,
                     style: TextStyle(color: Colors.white),
                   ),
@@ -60,18 +60,31 @@ class _SobrereviewState extends State<Sobrereview> {
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: 320,
-                padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-                child: const Text(
-                        "O Review é um aplicativo de flashcard que tem por objetivo ajudar os estudantes a aprender de forma dinâmica e prática. Ele conta com vários tópicos de diversas matérias. ",
+          Card(
+              margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+              clipBehavior: Clip.antiAlias,
+              color: const Color.fromARGB(255, 255, 255, 255),
+              elevation: 5.0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: const [
+                        Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Text(
+                            textAlign: TextAlign.justify,
+                            "O Review é um aplicativo de flashcard que tem por objetivo ajudar os estudantes a aprender de forma dinâmica e prática. Ele conta com vários tópicos de diversas matérias e foi criado por alunos do quarto ano do IFAL.",
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 146, 81, 221),
+                                fontSize: 25.0),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-            ],
-          )
+                ],
+              ))
         ]),
       ),
     );
