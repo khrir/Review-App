@@ -10,14 +10,16 @@ class MateriaDataSample {
     MateriaModel(
       id: 1,
       name: 'Matemática',
+      qtdTopicos: 7,
       listQuestao: [
         questionList[0],
         questionList[1],
-      ],
+      ], 
     ),
     MateriaModel(
       id: 2,
       name: 'Português',
+      qtdTopicos: 3,
       listQuestao: [
         questionList[2],
         questionList[3],
@@ -26,6 +28,7 @@ class MateriaDataSample {
     MateriaModel(
       id: 3,
       name: 'História',
+      qtdTopicos: 2,
       listQuestao: [
         questionList[4],
         questionList[5],
@@ -34,6 +37,7 @@ class MateriaDataSample {
     MateriaModel(
       id: 4,
       name: 'Biologia',
+      qtdTopicos: 3,
       listQuestao: [
         questionList[6],
         questionList[7],

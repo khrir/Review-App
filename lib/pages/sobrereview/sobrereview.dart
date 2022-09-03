@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/pages/home/home.dart';
 
 class Sobrereview extends StatefulWidget {
   const Sobrereview({Key? key}) : super(key: key);
@@ -67,17 +66,10 @@ class _SobrereviewState extends State<Sobrereview> {
               Container(
                 width: 320,
                 padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
-                child: Text.rich(
-                  style: TextStyle(
-                    fontSize: 23,
-                    color: Colors.white,
-                  ),
-                  TextSpan(
-                    text:
+                child: const Text(
                         "O Review é um aplicativo de flashcard que tem por objetivo ajudar os estudantes a aprender de forma dinâmica e prática. Ele conta com vários tópicos de diversas matérias. ",
                   ),
                 ),
-              ),
             ],
           )
         ]),

@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/data/materia_data_sample.dart';
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/cards/question_screen.dart';
-import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
 class HomeListItem extends StatefulWidget {
-  final HomeListModel homeListModel;
+  final MateriaModel materias;
 
-  const HomeListItem({Key? key, required this.homeListModel}) : super(key: key);
+  const HomeListItem({Key? key, required this.materias}) : super(key: key);
 
   @override
   State<HomeListItem> createState() => _HomeListItemState();
 }
 
 class _HomeListItemState extends State<HomeListItem> {
-  final materia = MateriaDataSample.materiaList;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,14 +31,13 @@ class _HomeListItemState extends State<HomeListItem> {
             child: Column(
               children: [
                 Text(
-                  widget.homeListModel.materiaName,
+                  widget.materias.name,
                   style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                    "${widget.homeListModel.qtdTopicos} de 10 tópicos revisados"),
+                Text("${widget.materias.qtdTopicos} de 10 tópicos revisados"),
                 // Add progress bar
                 const SizedBox(height: 15),
                 const SizedBox(
@@ -75,10 +70,9 @@ class _HomeListItemState extends State<HomeListItem> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    QuestionPage(
+                                builder: (BuildContext context) => QuestionPage(
                                       // TODO: implementar um verificador para enviar a matéria correta de acordo com o nome
-                                      materiaModel: (materia[0]),
+                                      materia: widget.materias,
                                     )));
                       },
                       child: const Center(

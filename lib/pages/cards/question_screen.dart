@@ -6,8 +6,8 @@ import 'package:review_app/pages/cards/answer_screen.dart';
 import '../app_bar/app_bar.dart';
 
 class QuestionPage extends StatefulWidget {
-  final MateriaModel materiaModel;
-  const QuestionPage({Key? key, required this.materiaModel}) : super(key: key);
+  final MateriaModel materia;
+  const QuestionPage({Key? key, required this.materia}) : super(key: key);
 
   @override
   State<QuestionPage> createState() => _QuestionPageState();
@@ -84,7 +84,7 @@ class _QuestionPageState extends State<QuestionPage> {
                               child: Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  widget.materiaModel.listQuestao[0].pergunta,
+                                  widget.materia.listQuestao[0].pergunta,
                                   style: const TextStyle(
                                     fontSize: 30,
                                     shadows: <Shadow>[
@@ -111,7 +111,9 @@ class _QuestionPageState extends State<QuestionPage> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (BuildContext context) =>
-                                            const AnswerPage()));
+                                            AnswerPage(
+                                              materia: widget.materia,
+                                )));
                               },
                               child: Container(
                                 decoration: const BoxDecoration(

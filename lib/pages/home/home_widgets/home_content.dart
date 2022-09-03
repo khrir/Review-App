@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/data/home_list_sample.dart';
+import 'package:review_app/data/materia_data_sample.dart';
+import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/home/home_widgets/controller/home_list_item.dart';
-import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
 class HomePageContent extends StatefulWidget {
   const HomePageContent({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<HomePageContent> {
-  static List<HomeListModel> listMocked = HomeListSample.listMocked;
+  static List<MateriaModel> listMocked = MateriaDataSample.materiaList;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +33,7 @@ class _HomePageContentState extends State<HomePageContent> {
         itemCount: listMocked.length,
         itemBuilder: (context, index) {
           return HomeListItem(
-            homeListModel: listMocked[index],
+            materias: listMocked[index],
           );
         },
       ),
