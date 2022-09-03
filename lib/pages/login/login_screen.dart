@@ -162,13 +162,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: 200,
                   padding: const EdgeInsets.only(top: 30),
-                  child: const Text.rich(
+                  // ignore: prefer_const_constructors
+                  child: Text.rich(
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                       color: Colors.white,
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: "Ainda não possui cadastro? ",
                       children: <TextSpan>[
                         TextSpan(
