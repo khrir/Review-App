@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/models/materia_model.dart';
+import 'package:review_app/models/question_model.dart';
 import 'package:review_app/pages/cards/answer_screen.dart';
 
 import '../app_bar/app_bar.dart';
@@ -13,6 +14,8 @@ class QuestionPage extends StatefulWidget {
 }
 
 class _QuestionPageState extends State<QuestionPage> {
+  late final List<QuestionModel> questoes = widget.materia.listQuestao;
+  var index = 0;
   // final List<MateriaModel> materiaList = MateriaDataSample.materiaList;
   @override
   Widget build(BuildContext context) {
@@ -50,23 +53,37 @@ class _QuestionPageState extends State<QuestionPage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 15,
-                              bottom: 8,
-                              left: 8,
-                              right: 15,
-                            ),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0xffBDBDBD),
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                              ),
-                              padding: const EdgeInsets.all(12),
-                              child: const Text(
-                                'Novo Tópico',
-                                style: TextStyle(
-                                  color: Color(0xff616161),
+                          Container(
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  if (index < (questoes.length-1)) {
+                                    index++;
+                                  } else {
+                                    index = 0;
+                                  }
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  bottom: 8,
+                                  left: 8,
+                                  right: 15,
+                                ),
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    color: Color(0xffBDBDBD),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  ),
+                                  padding: const EdgeInsets.all(12),
+                                  child: const Text(
+                                    'Novo Tópico',
+                                    style: TextStyle(
+                                      color: Color(0xff616161),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -83,7 +100,7 @@ class _QuestionPageState extends State<QuestionPage> {
                               child: Container(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  widget.materia.listQuestao[0].pergunta,
+                                  questoes[index].pergunta,
                                   style: const TextStyle(
                                     fontSize: 30,
                                     shadows: <Shadow>[
@@ -112,7 +129,8 @@ class _QuestionPageState extends State<QuestionPage> {
                                         builder: (BuildContext context) =>
                                             AnswerPage(
                                               materia: widget.materia,
-                                )));
+                                              questao: questoes[index],
+                                            )));
                               },
                               child: Container(
                                 decoration: const BoxDecoration(
@@ -123,7 +141,8 @@ class _QuestionPageState extends State<QuestionPage> {
                                   color: Color(0xffBDBDBD),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 15),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 15),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     // ignore: prefer_const_literals_to_create_immutables
@@ -202,7 +221,8 @@ class _QuestionPageState extends State<QuestionPage> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.85,
                               decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                               ),
                               child: LinearProgressIndicator(
                                 backgroundColor: Colors.grey[200],
@@ -227,7 +247,8 @@ class _QuestionPageState extends State<QuestionPage> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.85,
                               decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                               ),
                               child: LinearProgressIndicator(
                                 backgroundColor: Colors.grey[200],

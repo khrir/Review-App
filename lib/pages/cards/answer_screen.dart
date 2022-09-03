@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/models/materia_model.dart';
+import 'package:review_app/models/question_model.dart';
 import '../app_bar/app_bar.dart';
 
 class AnswerPage extends StatefulWidget {
   final MateriaModel materia;
-  const AnswerPage({Key? key, required this.materia}) : super(key: key);
+  final QuestionModel questao;
+  const AnswerPage({Key? key, required this.materia, required this.questao}) : super(key: key);
 
   @override
   State<AnswerPage> createState() => _AnswerPageState();
@@ -52,7 +54,8 @@ class _AnswerPageState extends State<AnswerPage> {
                             child: Container(
                               decoration: const BoxDecoration(
                                 color: Color(0xffBDBDBD),
-                                borderRadius: BorderRadius.all(Radius.circular(7)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(7)),
                               ),
                               padding: const EdgeInsets.all(12),
                               child: const Text(
@@ -74,7 +77,7 @@ class _AnswerPageState extends State<AnswerPage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.materia.listQuestao[0].pergunta,
+                                widget.questao.pergunta,
                                 style: const TextStyle(
                                   fontStyle: FontStyle.normal,
                                   fontSize: 20,
@@ -92,7 +95,7 @@ class _AnswerPageState extends State<AnswerPage> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                widget.materia.listQuestao[0].descricao,
+                                widget.questao.descricao,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(fontSize: 12),
                               ),
@@ -211,7 +214,8 @@ class _AnswerPageState extends State<AnswerPage> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.85,
                               decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                               ),
                               child: LinearProgressIndicator(
                                 backgroundColor: Colors.grey[200],
@@ -236,7 +240,8 @@ class _AnswerPageState extends State<AnswerPage> {
                             Container(
                               width: MediaQuery.of(context).size.width * 0.85,
                               decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
                               ),
                               child: LinearProgressIndicator(
                                 backgroundColor: Colors.grey[200],
@@ -260,4 +265,3 @@ class _AnswerPageState extends State<AnswerPage> {
     );
   }
 }
-
