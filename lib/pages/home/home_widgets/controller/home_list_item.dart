@@ -71,7 +71,6 @@ class _HomeListItemState extends State<HomeListItem> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) => QuestionPage(
-                                      // TODO: implementar um verificador para enviar a matéria correta de acordo com o nome
                                       materia: widget.materias,
                                     )));
                       },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/data/materia_data_sample.dart';
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/cards/answer_screen.dart';
 
