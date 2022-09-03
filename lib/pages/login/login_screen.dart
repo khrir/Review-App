@@ -162,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Container(
                   width: 200,
                   padding: const EdgeInsets.only(top: 30),
-                  child: Text.rich(
+                  child: const Text.rich(
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20,

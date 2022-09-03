@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/data/materia_data_sample.dart';
-import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/cards/question_screen.dart';
 import 'package:review_app/pages/home/home_widgets/model/home_list_model.dart';
 
@@ -77,7 +76,6 @@ class _HomeListItemState extends State<HomeListItem> {
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     QuestionPage(
-                                      // TODO: implementar um verificador para enviar a matéria correta de acordo com o nome
                                       materiaModel: (materia[0]),
                                     )));
                       },

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:review_app/pages/app_bar/app_bar.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -10,12 +12,12 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 182, 1, 202),
+      backgroundColor: const Color.fromARGB(255, 182, 1, 202),
       appBar: getHomeAppBar(),
       body: Column(
         children: <Widget>[
           Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -23,7 +25,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Color(0xFF2C0469),
                     Color.fromARGB(255, 182, 1, 202)
                   ])),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 400.0,
                 child: Center(
@@ -31,30 +33,30 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage: NetworkImage(
                           "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
                         ),
                         radius: 65.0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
-                      Text(
+                      const Text(
                         "Maísa Lira",
                         style: TextStyle(
                           fontSize: 22.0,
                           color: Color.fromARGB(255, 253, 252, 255),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10.0,
                       ),
                       Card(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 5.0),
                         clipBehavior: Clip.antiAlias,
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         elevation: 5.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -63,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: <Widget>[
                               Expanded(
                                 child: Column(
-                                  children: <Widget>[
+                                  children: const <Widget>[
                                     Text(
                                       "QUESTÕES RESPONDIDAS",
                                       style: TextStyle(
@@ -88,7 +90,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Column(
-                                children: <Widget>[
+                                children: const <Widget>[
                                   Text(
                                     "ACERTOS",
                                     style: TextStyle(
@@ -114,16 +116,16 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       Card(
-                          margin: EdgeInsets.symmetric(
+                          margin: const EdgeInsets.symmetric(
                               horizontal: 20.0, vertical: 5.0),
                           clipBehavior: Clip.antiAlias,
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           elevation: 5.0,
                           child: Row(
                             children: [
                               Expanded(
                                 child: Column(
-                                  children: [
+                                  children: const [
                                     Text(
                                       "Bio: Sou alagoana e tenho 19 anos.  Sou aluna do quarto ano de informática no ensino técnico do IFAL.",
                                       style: TextStyle(

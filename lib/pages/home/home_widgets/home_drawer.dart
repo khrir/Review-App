@@ -29,7 +29,7 @@ Drawer getHomeDrawer(context) {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              hoverColor: const Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
                 Icons.home,
                 color: Colors.white,
@@ -49,7 +49,7 @@ Drawer getHomeDrawer(context) {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              hoverColor: const Color.fromARGB(255, 27, 3, 63),
               enabled: true,
               leading: const Icon(
                 Icons.login_outlined,
@@ -71,7 +71,7 @@ Drawer getHomeDrawer(context) {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              hoverColor: const Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
                 Icons.support,
                 color: Colors.white,
@@ -92,7 +92,7 @@ Drawer getHomeDrawer(context) {
           Material(
             type: MaterialType.transparency,
             child: ListTile(
-              hoverColor: Color.fromARGB(255, 27, 3, 63),
+              hoverColor: const Color.fromARGB(255, 27, 3, 63),
               leading: const Icon(
                 Icons.person,
                 color: Colors.white,
@@ -105,7 +105,7 @@ Drawer getHomeDrawer(context) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => ProfilePage()));
+                        builder: (BuildContext context) => const ProfilePage()));
               },
             ),
           ),

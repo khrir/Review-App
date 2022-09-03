@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/pages/home/home.dart';
 
 class Sobrereview extends StatefulWidget {
   const Sobrereview({Key? key}) : super(key: key);
@@ -62,17 +61,17 @@ class _SobrereviewState extends State<Sobrereview> {
             ],
           ),
           Card(
-              margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
               clipBehavior: Clip.antiAlias,
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: const Color.fromARGB(255, 255, 255, 255),
               elevation: 5.0,
               child: Row(
                 children: [
                   Expanded(
                     child: Column(
-                      children: [
+                      children: const [
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: EdgeInsets.all(20.0),
                           child: Text(
                             textAlign: TextAlign.justify,
                             "O Review é um aplicativo de flashcard que tem por objetivo ajudar os estudantes a aprender de forma dinâmica e prática. Ele conta com vários tópicos de diversas matérias e foi criado por alunos do quarto ano do IFAL.",
