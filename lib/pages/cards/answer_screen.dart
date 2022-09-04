@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/models/question_model.dart';
-import '../app_bar/app_bar.dart';
+import 'package:review_app/pages/home/home_widgets/app_bar/app_bar.dart';
 
 class AnswerPage extends StatefulWidget {
   final MateriaModel materia;

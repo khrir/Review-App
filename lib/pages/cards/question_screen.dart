@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/models/question_model.dart';
 import 'package:review_app/pages/cards/answer_screen.dart';
-
-import '../app_bar/app_bar.dart';
+import 'package:review_app/pages/home/home_widgets/app_bar/app_bar.dart';
 
 class QuestionPage extends StatefulWidget {
   final MateriaModel materia;
