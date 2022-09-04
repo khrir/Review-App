@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/cadastro/cadastrar.dart';
 import 'package:review_app/pages/home/home.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -140,11 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     onPressed: () => {
                       Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const HomePage())
-                                      )
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const HomePage()))
                     },
                     child: const Text(
                       "Entrar",
@@ -169,12 +170,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 20,
                       color: Colors.white,
                     ),
-                    const TextSpan(
+                    TextSpan(
                       text: "Ainda não possui cadastro? ",
-                      children: <TextSpan>[
+                      children: [
                         TextSpan(
                           text: "cadastre-se",
-                          style: TextStyle(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                  context, MaterialPageRoute(
+                                    builder: (BuildContext  context) => const Cadastrar(),
+                                  )
+                                );
+                            },
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                           ),
                         ),

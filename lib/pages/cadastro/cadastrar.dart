@@ -1,4 +1,6 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:review_app/pages/home/home_widgets/app_bar/app_bar.dart';
 import 'package:review_app/pages/login/login_screen.dart';
 
 class Cadastrar extends StatefulWidget {
@@ -11,20 +13,9 @@ class _CadastrarState extends State<Cadastrar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF2C0469),
-        leading: const Icon(Icons.arrow_back_ios_new_outlined),
-        title: const Text(
-          'Criar conta',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      appBar: getHomeAppBar(),
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 50),
+        padding: const EdgeInsets.only(top: 20, left: 45, right: 45),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -185,10 +176,10 @@ class _CadastrarState extends State<Cadastrar> {
                 padding: const EdgeInsets.only(top: 15),
                 child: RichText(
                   textAlign: TextAlign.center,
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: <TextSpan>[
-                      TextSpan(
-                        text: "Já possui cadastro?",
+                      const TextSpan(
+                        text: "Já possui cadastro? ",
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -196,7 +187,15 @@ class _CadastrarState extends State<Cadastrar> {
                       ),
                       TextSpan(
                         text: "Login!",
-                        style: TextStyle(
+                        recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                  context, MaterialPageRoute(
+                                    builder: (BuildContext  context) => const LoginScreen(),
+                                  )
+                                );
+                            },
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.white,
                           fontSize: 19,
@@ -226,19 +225,8 @@ class _CadastrarState extends State<Cadastrar> {
                     ),
                   )),
 
-              /*child: const ListTile(
-                      leading: Icon(Icons.facebook_rounded),
-                      title: const Text(
-                        'Continuar pelo Facebook',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      ),*/
-
               Padding(
-                padding: const EdgeInsets.only(top: 12),
+                padding: const EdgeInsets.only(top: 12, bottom: 20),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
