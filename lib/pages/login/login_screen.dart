@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.only(top: 7),
                     child: Text(
                       "Login",
-                      textScaleFactor: 2.5,
+                      textScaleFactor: 2,
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   icon: const Icon(
                     Icons.arrow_back_ios,
-                    size: 35,
+                    size: 25,
                     color: Colors.white,
                   ),
                 ),
