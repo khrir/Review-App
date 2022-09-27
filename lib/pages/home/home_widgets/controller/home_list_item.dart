@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/models/materia_model.dart';
-import 'package:review_app/pages/cards/question_screen.dart';
+import 'package:review_app/pages/cards/card_page.dart';
 
 class HomeListItem extends StatefulWidget {
   final MateriaModel materias;
@@ -70,7 +70,7 @@ class _HomeListItemState extends State<HomeListItem> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (BuildContext context) => QuestionPage(
+                                builder: (BuildContext context) => CardPage(
                                       materia: widget.materias,
                                     )));
                       },
