@@ -142,7 +142,7 @@ class _CadastrarState extends State<Cadastrar> {
                             padding: const EdgeInsets.only(top: 30.0),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.white,
+                                backgroundColor: Colors.white,
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 50,
                                 ),
@@ -227,8 +227,8 @@ class _CadastrarState extends State<Cadastrar> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              onPrimary: const Color(0xFFFFFFFF),
-                              primary: const Color(0xFF1877F2),
+                              foregroundColor: const Color(0xFFFFFFFF),
+                              backgroundColor: const Color(0xFF1877F2),
                               minimumSize: const Size(120, 50),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
@@ -245,8 +245,8 @@ class _CadastrarState extends State<Cadastrar> {
                         child: ElevatedButton(
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            onPrimary: const Color(0xFFFFFFFF),
-                            primary: const Color(0xFF000000),
+                            foregroundColor: const Color(0xFFFFFFFF),
+                            backgroundColor: const Color(0xFF000000),
                             minimumSize: const Size(120, 50),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
