@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/data/materia_data_sample.dart';
+import 'package:review_app/data/materia_dao.dart';
+
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/home/home_widgets/controller/home_list_item.dart';
 
@@ -11,7 +12,7 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<HomePageContent> {
-  static List<MateriaModel> listMocked = MateriaDataSample.materiaList;
+  // static List<MateriaModel> listMocked = MateriaDataSample.materiaList;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,14 +30,34 @@ class _HomePageContentState extends State<HomePageContent> {
         vertical: 40,
         horizontal: 20,
       ),
-      child: ListView.builder(
-        itemCount: listMocked.length,
-        itemBuilder: (context, index) {
-          return HomeListItem(
-            materias: listMocked[index],
+      child: buildListView(),
+    );
+  }
+
+  buildListView() {
+    Future<List<MateriaModel>> futureList = MateriaDao().listarMaterias();
+
+    return FutureBuilder<List<MateriaModel>>(
+      future: futureList,
+      builder: (context, snapshot) {
+
+        if(snapshot.hasData){
+          List<MateriaModel> listaMateria = snapshot.data ?? [];
+
+          return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: listaMateria.length,
+            itemBuilder: (context, index) {
+              return HomeListItem(
+                materias: listaMateria[index],
+              );
+            },
           );
-        },
-      ),
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

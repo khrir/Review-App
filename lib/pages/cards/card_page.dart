@@ -14,7 +14,9 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
-  late final List<QuestionModel> questoes = widget.materia.listQuestao;
+  late final int? id = widget.materia.id;
+
+  late final List<QuestionModel> questoes = [];
   var index = 0;
   // final List<MateriaModel> materiaList = MateriaDataSample.materiaList;
   @override

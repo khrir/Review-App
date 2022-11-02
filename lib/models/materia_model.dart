@@ -1,15 +1,23 @@
-import 'package:review_app/models/question_model.dart';
-
 class MateriaModel {
-  final int id;
-  final String name;
-  final int qtdTopicos;
-  final List<QuestionModel> listQuestao;
+  int? id;
+  late final String name;
+  int? qtdTopicos;
 
   MateriaModel({
-    required this.id,
+    this.id,
     required this.name,
-    required this.qtdTopicos,
-    required this.listQuestao,
+    this.qtdTopicos,
   });
+
+  MateriaModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['pergunta'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    return data;
+  }
 }
