@@ -11,8 +11,9 @@ class DBHelper {
 
     Database db = await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
       onCreate: onCreate,
+      onUpgrade: onUpgrade,
     );
 
     return db;
@@ -34,5 +35,16 @@ class DBHelper {
     sql =
         "INSERT INTO questao (pergunta, questao, id_materia) VALUES ('1 + 1', '2', 1);";
     await db.execute(sql);
+  }
+
+  Future<FutureOr<void>> onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if(oldVersion == 1 && newVersion == 2){
+      String sql = "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, email varchar(100), password varchar(100))";
+      await db.execute(sql);
+
+      sql = "INSERT INTO user (email, password) VALUES ('admin@gmail.com', 'admin')";
+      await db.execute(sql);
+    }
+
   }
 }
