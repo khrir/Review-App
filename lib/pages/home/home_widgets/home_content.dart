@@ -30,7 +30,13 @@ class _HomePageContentState extends State<HomePageContent> {
         vertical: 40,
         horizontal: 20,
       ),
-      child: buildListView(),
+      child: Column(
+        children: [
+          Expanded(
+            child: buildListView(),
+          ),
+        ],
+      ),
     );
   }
 
@@ -40,7 +46,7 @@ class _HomePageContentState extends State<HomePageContent> {
     return FutureBuilder<List<MateriaModel>>(
       future: futureList,
       builder: (context, snapshot) {
-
+        print(snapshot.data);
         if(snapshot.hasData){
           List<MateriaModel> listaMateria = snapshot.data ?? [];
 
