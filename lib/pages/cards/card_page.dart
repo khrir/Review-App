@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flip_card/flip_card.dart';
+import 'package:review_app/data/questao_dao.dart';
 
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/models/question_model.dart';
@@ -14,6 +15,8 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
+  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
+  
   late final int? id = widget.materia.id;
 
   late final List<QuestionModel> questoes = [];
@@ -416,6 +419,28 @@ class _CardPageState extends State<CardPage> {
           ),
         ),
       ),
+    );
+  }
+
+  buildListView() {
+    Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
+
+    return FutureBuilder<List<QuestionModel>>(
+      future: futureList,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<QuestionModel> listaQuestoes = snapshot.data ?? [];
+
+          for (var element in listaQuestoes) {
+            print(element);
+            questoes.add(element);
+          }
+
+          return const Padding(padding: EdgeInsets.zero);
+        }
+
+        return const Center(child: CircularProgressIndicator());
+      },
     );
   }
 }

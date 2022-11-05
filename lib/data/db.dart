@@ -8,20 +8,20 @@ class BD {
   ];
 
   static List<QuestionModel> questoes = [
-    QuestionModel(
-      pergunta: '1 + 1',
-      descricao: '2',
-      idMateria: 1,
-    ),
-    QuestionModel(
-      pergunta: 'Quem disse "Já se foi o disco voador"?',
-      descricao: 'Chavez',
-      idMateria: 2,
-    ),
-    QuestionModel(
-        pergunta: 'Fator predominante para a definição do sexo da tartaruga',
-        descricao: 'A temperatura da areia',
-        idMateria: 3)
+    // QuestionModel(
+    //   pergunta: '1 + 1',
+    //   descricao: '2',
+    //   idMateria: 1,
+    // ),
+    // QuestionModel(
+    //   pergunta: 'Quem disse "Já se foi o disco voador"?',
+    //   descricao: 'Chavez',
+    //   idMateria: 2,
+    // ),
+    // QuestionModel(
+    //     pergunta: 'Fator predominante para a definição do sexo da tartaruga',
+    //     descricao: 'A temperatura da areia',
+    //     idMateria: 3)
   ];
 
   static Future<List<MateriaModel>> listarMaterias() async {

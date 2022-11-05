@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class DBHelper {
   initDB() async {
     String path = await getDatabasesPath();
-    String dbPath = join(path, "banco_app.db");
+    String dbPath = join(path, "review_app.db");
 
     Database db = await openDatabase(
       dbPath,
@@ -36,13 +36,13 @@ class DBHelper {
         id INTEGER PRIMARY KEY,
         pergunta VARCHAR(100), 
         descricao TEXT, 
-        id_materia INTEGER,
-        CONSTRAINT materia_fk FOREIGN KEY (id_materia) REFERENCES materia (id));
+        idMateria INTEGER,
+        CONSTRAINT materia_fk FOREIGN KEY (idMateria) REFERENCES materia (id));
       ''';
     await db.execute(sql);
 
     sql =
-        "INSERT INTO questao (pergunta, descricao, id_materia) VALUES ('1 + 1', '2', 1);";
+        "INSERT INTO questao (pergunta, descricao, idMateria) VALUES ('1 + 1', '2', 1);";
     await db.execute(sql);
 
     sql = 
