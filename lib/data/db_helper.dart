@@ -27,6 +27,9 @@ class DBHelper {
       ''';
     await db.execute(sql);
 
+    sql = "INSERT INTO materia (name) VALUES ('Matemática');";
+    await db.execute(sql);
+
     sql = 
       '''
       CREATE TABLE questao (
@@ -36,9 +39,6 @@ class DBHelper {
         id_materia INTEGER,
         CONSTRAINT materia_fk FOREIGN KEY (id_materia) REFERENCES materia (id));
       ''';
-    await db.execute(sql);
-
-    sql = "INSERT INTO materia (name) VALUES ('Matemática');";
     await db.execute(sql);
 
     sql =
