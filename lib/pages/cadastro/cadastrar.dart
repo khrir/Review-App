@@ -2,13 +2,35 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:review_app/pages/login/login_screen.dart';
 
+import '../../data/db_helper.dart';
+import '../../models/user.dart';
+
 class Cadastrar extends StatefulWidget {
   const Cadastrar({Key? key}) : super(key: key);
+
   @override
   State<Cadastrar> createState() => _CadastrarState();
 }
 
 class _CadastrarState extends State<Cadastrar> {
+  final _conUserEmail = TextEditingController();
+  final _conUserPassword = TextEditingController();
+  final dbHelper = DBHelper();
+
+  Future<bool> signUp() async {
+    if (_conUserEmail.text != '' && _conUserPassword.text != '') {
+      await dbHelper
+          .createUser(
+            User(
+              email: _conUserEmail.text,
+              password: _conUserPassword.text,
+            ),
+          );
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,12 +105,13 @@ class _CadastrarState extends State<Cadastrar> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           SizedBox(
                             height: 35,
                             width: 300,
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: _conUserEmail,
+                              decoration: const InputDecoration(
                                 fillColor: Colors.white,
                                 filled: true,
                                 focusColor: Colors.white,
@@ -116,13 +139,14 @@ class _CadastrarState extends State<Cadastrar> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           SizedBox(
                             height: 35,
                             width: 300,
                             child: TextField(
+                              controller: _conUserPassword,
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 fillColor: Colors.white,
                                 filled: true,
                                 hintText: "Digite sua senha",
@@ -148,11 +172,18 @@ class _CadastrarState extends State<Cadastrar> {
                                 ),
                               ),
                               onPressed: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const LoginScreen()))
+                                signUp().then((value) => {
+                                      if (value)
+                                        {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginScreen(),
+                                            ),
+                                          )
+                                        }
+                                    })
                               },
                               child: const Text(
                                 "Cadastrar",
