@@ -46,10 +46,8 @@ class _HomePageContentState extends State<HomePageContent> {
     return FutureBuilder<List<MateriaModel>>(
       future: futureList,
       builder: (context, snapshot) {
-        print(snapshot.data);
-        if(snapshot.hasData){
+        if (snapshot.hasData) {
           List<MateriaModel> listaMateria = snapshot.data ?? [];
-
           return ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

@@ -9,7 +9,7 @@ import '../models/user.dart';
 class DBHelper {
   initDB() async {
     String path = await getDatabasesPath();
-    String dbPath = join(path, "review_app.db");
+    String dbPath = join(path, "revir.db");
 
     Database db = await openDatabase(
       dbPath,
@@ -32,6 +32,9 @@ class DBHelper {
     sql = "INSERT INTO materia (name) VALUES ('Matemática');";
     await db.execute(sql);
 
+    sql = "INSERT INTO materia (name) VALUES ('História');";
+    await db.execute(sql);
+
     sql = 
       '''
       CREATE TABLE questao (
@@ -45,6 +48,14 @@ class DBHelper {
 
     sql =
         "INSERT INTO questao (pergunta, descricao, idMateria) VALUES ('1 + 1', '2', 1);";
+    await db.execute(sql);
+
+    sql =
+        "INSERT INTO questao (pergunta, descricao, idMateria) VALUES ('2 + 1', '3', 1);";
+    await db.execute(sql);
+
+    sql =
+        "INSERT INTO questao (pergunta, descricao, idMateria) VALUES ('Quem disse: Já se foi o disco voador?', 'Chaves', 2);";
     await db.execute(sql);
 
     sql = 

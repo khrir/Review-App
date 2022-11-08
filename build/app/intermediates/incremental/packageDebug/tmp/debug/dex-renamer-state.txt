@@ -1,4 +1,4 @@
-#Sat Nov 05 15:27:53 BRT 2022
+#Mon Nov 07 22:40:39 BRT 2022
 base.0=/home/khrir/Documents/Repositorios/Review-App/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

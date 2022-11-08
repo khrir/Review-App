@@ -15,15 +15,27 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
-  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
-  
   late final int? id = widget.materia.id;
+  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
+  late List<dynamic> perguntasArr = [];
+  late List<dynamic> descricaoArr = [];
 
-  late final List<QuestionModel> questoes = [];
   var index = 0;
   // final List<MateriaModel> materiaList = MateriaDataSample.materiaList;
   @override
   Widget build(BuildContext context) {
+    futureList.then(
+      (value) {
+        for (var element in value) {
+          if (element.idMateria == id) {
+            perguntasArr.add(element.pergunta);
+            descricaoArr.add(element.descricao);
+          }
+        }
+        setState(() {});
+      },
+    );
+
     return Scaffold(
       appBar: getHomeAppBar(),
       body: SafeArea(
@@ -70,7 +82,7 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (questoes.length - 1)) {
+                                        if (index < (perguntasArr.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -111,7 +123,7 @@ class _CardPageState extends State<CardPage> {
                                       child: Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          questoes[index].pergunta,
+                                          perguntasArr[index],
                                           style: const TextStyle(
                                             fontSize: 30,
                                             shadows: <Shadow>[
@@ -187,7 +199,7 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (questoes.length - 1)) {
+                                        if (index < (perguntasArr.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -228,7 +240,7 @@ class _CardPageState extends State<CardPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        questoes[index].pergunta,
+                                        perguntasArr[index],
                                         style: const TextStyle(
                                           fontStyle: FontStyle.normal,
                                           fontSize: 20,
@@ -246,7 +258,7 @@ class _CardPageState extends State<CardPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        questoes[index].descricao,
+                                        descricaoArr[index],
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(fontSize: 12),
                                       ),
@@ -419,28 +431,6 @@ class _CardPageState extends State<CardPage> {
           ),
         ),
       ),
-    );
-  }
-
-  buildListView() {
-    Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
-
-    return FutureBuilder<List<QuestionModel>>(
-      future: futureList,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<QuestionModel> listaQuestoes = snapshot.data ?? [];
-
-          for (var element in listaQuestoes) {
-            print(element);
-            questoes.add(element);
-          }
-
-          return const Padding(padding: EdgeInsets.zero);
-        }
-
-        return const Center(child: CircularProgressIndicator());
-      },
     );
   }
 }
