@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/data/questao_dao.dart';
 import 'package:review_app/models/materia_model.dart';
+import 'package:review_app/models/question_model.dart';
 import 'package:review_app/pages/cards/card_page.dart';
 
 class HomeListItem extends StatefulWidget {
@@ -12,8 +14,25 @@ class HomeListItem extends StatefulWidget {
 }
 
 class _HomeListItemState extends State<HomeListItem> {
+  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
+  late List<dynamic> perguntasArr = [];
+  late List<dynamic> descricaoArr = [];
+  late int qtdTopicos = 7;
+
   @override
   Widget build(BuildContext context) {
+    futureList.then(
+      (value) {
+        for (var element in value) {
+          if (element.idMateria == widget.materias.id) {
+            perguntasArr.add(element.pergunta);
+            descricaoArr.add(element.descricao);
+          }
+        }
+        setState(() {});
+      },
+    );
+    // qtdTopicos = perguntasArr.length;
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: Column(
@@ -37,7 +56,7 @@ class _HomeListItemState extends State<HomeListItem> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text("${widget.materias.qtdTopicos} de 10 tópicos revisados"),
+                Text("0 de $qtdTopicos tópicos revisados"),
                 // Add progress bar
                 const SizedBox(height: 15),
                 const SizedBox(
@@ -46,7 +65,7 @@ class _HomeListItemState extends State<HomeListItem> {
                   child: LinearProgressIndicator(
                     value: 0.1,
                     valueColor: AlwaysStoppedAnimation(Colors.green),
-                    backgroundColor: Color.fromARGB(255, 227, 226, 226),
+                    backgroundColor: Color.fromARGB(255, 94, 55, 55),
                   ),
                 ),
               ],
@@ -72,6 +91,8 @@ class _HomeListItemState extends State<HomeListItem> {
                             MaterialPageRoute(
                                 builder: (BuildContext context) => CardPage(
                                       materia: widget.materias,
+                                      questao: perguntasArr,
+                                      descricao: descricaoArr,
                                     )));
                       },
                       child: const Center(

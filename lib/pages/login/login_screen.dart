@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:review_app/pages/cadastro/cadastrar.dart';
 import 'package:review_app/pages/home/home.dart';
 
+import '../../data/db_helper.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -11,6 +13,32 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final dbHelper = DBHelper();
+
+  Future<bool> signIn() async {
+    if (_emailController.text != '' && _passwordController.text != '') {
+      await dbHelper
+          .login(_emailController.text, _passwordController.text)
+          .then(
+            (value) => {
+              if (value.id != null)
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => const HomePage(),
+                    ),
+                  ),
+                },
+            },
+          );
+      return true;
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,12 +106,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 SizedBox(
                   height: 35,
                   width: 300,
                   child: TextField(
-                    decoration: InputDecoration(
+                    controller: _emailController,
+                    decoration: const InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
                       focusColor: Colors.white,
@@ -110,13 +139,14 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 SizedBox(
                   height: 35,
                   width: 300,
                   child: TextField(
+                    controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
                       hintText: "Digite sua senha",
@@ -141,11 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     onPressed: () => {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const HomePage()))
+                      signIn(),
                     },
                     child: const Text(
                       "Entrar",
@@ -178,10 +204,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               Navigator.push(
-                                  context, MaterialPageRoute(
-                                    builder: (BuildContext  context) => const Cadastrar(),
-                                  )
-                                );
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        const Cadastrar(),
+                                  ));
                             },
                           style: const TextStyle(
                             decoration: TextDecoration.underline,
