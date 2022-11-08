@@ -1,41 +1,24 @@
 import "package:flutter/material.dart";
 import 'package:flip_card/flip_card.dart';
-import 'package:review_app/data/questao_dao.dart';
 
 import 'package:review_app/models/materia_model.dart';
-import 'package:review_app/models/question_model.dart';
 import 'package:review_app/pages/home/home_widgets/app_bar/app_bar.dart';
 
 class CardPage extends StatefulWidget {
   final MateriaModel materia;
-  const CardPage({Key? key, required this.materia}) : super(key: key);
+  final List<dynamic> questao;
+  final List<dynamic> descricao;
+  const CardPage({Key? key, required this.materia, required this.questao, required this.descricao}) : super(key: key);
 
   @override
   State<CardPage> createState() => _CardPageState();
 }
 
 class _CardPageState extends State<CardPage> {
-  late final int? id = widget.materia.id;
-  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
-  late List<dynamic> perguntasArr = [];
-  late List<dynamic> descricaoArr = [];
-
   var index = 0;
-  // final List<MateriaModel> materiaList = MateriaDataSample.materiaList;
+
   @override
   Widget build(BuildContext context) {
-    futureList.then(
-      (value) {
-        for (var element in value) {
-          if (element.idMateria == id) {
-            perguntasArr.add(element.pergunta);
-            descricaoArr.add(element.descricao);
-          }
-        }
-        setState(() {});
-      },
-    );
-
     return Scaffold(
       appBar: getHomeAppBar(),
       body: SafeArea(
@@ -82,7 +65,7 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (perguntasArr.length - 1)) {
+                                        if (index < (widget.questao.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -123,7 +106,7 @@ class _CardPageState extends State<CardPage> {
                                       child: Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          perguntasArr[index],
+                                          widget.questao[index],
                                           style: const TextStyle(
                                             fontSize: 30,
                                             shadows: <Shadow>[
@@ -199,7 +182,7 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (perguntasArr.length - 1)) {
+                                        if (index < (widget.questao.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -240,7 +223,7 @@ class _CardPageState extends State<CardPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        perguntasArr[index],
+                                        widget.questao[index],
                                         style: const TextStyle(
                                           fontStyle: FontStyle.normal,
                                           fontSize: 20,
@@ -258,7 +241,7 @@ class _CardPageState extends State<CardPage> {
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        descricaoArr[index],
+                                        widget.descricao[index],
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(fontSize: 12),
                                       ),

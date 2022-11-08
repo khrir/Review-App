@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:review_app/data/materia_dao.dart';
-
 import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/pages/home/home_widgets/controller/home_list_item.dart';
 
@@ -12,7 +11,6 @@ class HomePageContent extends StatefulWidget {
 }
 
 class _HomePageContentState extends State<HomePageContent> {
-  // static List<MateriaModel> listMocked = MateriaDataSample.materiaList;
   @override
   Widget build(BuildContext context) {
     return Container(
