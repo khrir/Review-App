@@ -1,9 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:review_app/data/user_dao.dart';
 import 'package:review_app/pages/cadastro/cadastrar.dart';
 import 'package:review_app/pages/home/home.dart';
-
-import '../../data/db_helper.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,11 +14,11 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final dbHelper = DBHelper();
+  final userDao = UserDao();
 
   Future<bool> signIn() async {
     if (_emailController.text != '' && _passwordController.text != '') {
-      await dbHelper
+      await userDao
           .login(_emailController.text, _passwordController.text)
           .then(
             (value) => {

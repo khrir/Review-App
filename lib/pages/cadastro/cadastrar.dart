@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:review_app/data/user_dao.dart';
 import 'package:review_app/pages/login/login_screen.dart';
 
-import '../../data/db_helper.dart';
 import '../../models/user.dart';
 
 class Cadastrar extends StatefulWidget {
@@ -15,11 +15,11 @@ class Cadastrar extends StatefulWidget {
 class _CadastrarState extends State<Cadastrar> {
   final _conUserEmail = TextEditingController();
   final _conUserPassword = TextEditingController();
-  final dbHelper = DBHelper();
+  final userDao = UserDao();
 
   Future<bool> signUp() async {
     if (_conUserEmail.text != '' && _conUserPassword.text != '') {
-      await dbHelper
+      await userDao
           .createUser(
             User(
               email: _conUserEmail.text,
