@@ -3,7 +3,6 @@ import 'package:review_app/models/question_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class QuestaoDao {
-
   Future<List<QuestionModel>> listarQuestoes() async {
     DBHelper dbHelper = DBHelper();
     Database db = await dbHelper.initDB();
@@ -13,7 +12,7 @@ class QuestaoDao {
 
     List<QuestionModel> lista = <QuestionModel>[];
 
-    for(var json in result){
+    for (var json in result) {
       QuestionModel questao = QuestionModel.fromJson(json);
       lista.add(questao);
     }
@@ -21,4 +20,10 @@ class QuestaoDao {
     return lista;
   }
 
+  salvarQuestao({required QuestionModel questao}) async {
+    DBHelper dbHelper = DBHelper();
+    Database database = await dbHelper.initDB();
+
+    await database.insert('questao', questao.toJson());
+  }
 }

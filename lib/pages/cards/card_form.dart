@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:review_app/pages/home/home.dart';
+import 'package:review_app/data/db_helper.dart';
+import 'package:review_app/data/questao_dao.dart';
+import 'package:review_app/models/question_model.dart';
 
 class CardForm extends StatefulWidget {
   const CardForm({Key? key}) : super(key: key);
@@ -8,6 +10,12 @@ class CardForm extends StatefulWidget {
 }
 
 class _CardFormState extends State<CardForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _perguntaController = TextEditingController();
+  final _descricaoController = TextEditingController();
+  final _idMateriaController = TextEditingController();
+  final dbHelper = DBHelper();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +46,7 @@ class _CardFormState extends State<CardForm> {
                             child: Padding(
                               padding: EdgeInsets.only(top: 7),
                               child: Text(
-                                "Cadastrar",
+                                "Adicionar questão",
                                 textScaleFactor: 2,
                                 style: TextStyle(color: Colors.white),
                               ),
@@ -82,12 +90,19 @@ class _CardFormState extends State<CardForm> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           SizedBox(
                             height: 35,
                             width: 300,
-                            child: TextField(
-                              decoration: InputDecoration(
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Campo de pergunta obrigatório';
+                                }
+                                return null;
+                              },
+                              controller: _perguntaController,
+                              decoration: const InputDecoration(
                                 fillColor: Colors.white,
                                 filled: true,
                                 focusColor: Colors.white,
@@ -115,16 +130,61 @@ class _CardFormState extends State<CardForm> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           SizedBox(
                             height: 35,
                             width: 300,
-                            child: TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Campo de resposta obrigatório';
+                                }
+                                return null;
+                              },
+                              controller: _descricaoController,
+                              decoration: const InputDecoration(
                                 fillColor: Colors.white,
                                 filled: true,
                                 hintText: "Digite a resposta",
+                                hintStyle: TextStyle(color: Colors.black54),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 35, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Resposta",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 35,
+                            width: 300,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Campo id obrigatório';
+                                }
+                                return null;
+                              },
+                              controller: _idMateriaController,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: "Digite o id da matéria",
                                 hintStyle: TextStyle(color: Colors.black54),
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -146,13 +206,7 @@ class _CardFormState extends State<CardForm> {
                                   horizontal: 50,
                                 ),
                               ),
-                              onPressed: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            const HomePage()))
-                              },
+                              onPressed: () => onPressed(context),
                               child: const Text(
                                 "Inserir",
                                 style: TextStyle(
@@ -172,5 +226,36 @@ class _CardFormState extends State<CardForm> {
         ),
       ),
     );
+  }
+
+  onPressed(context) async {
+    if (_formKey.currentState!.validate()) {
+      String perguntaDigitada = _perguntaController.text;
+      String descricaoDigitada = _descricaoController.text;
+      int idMateriaDigitada = int.parse(_idMateriaController.text);
+
+      QuestionModel questaoInserida = QuestionModel(
+          pergunta: perguntaDigitada,
+          descricao: descricaoDigitada,
+          idMateria: idMateriaDigitada);
+      await QuestaoDao().salvarQuestao(questao: questaoInserida);
+
+      showSnackBar('A questão foi salva com sucesso!', context);
+      Navigator.pop(context);
+    } else {
+      showSnackBar("Erro na validação", context);
+    }
+  }
+
+  showSnackBar(String msg, context) {
+    final snackBar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      margin: const EdgeInsets.symmetric(
+        vertical: 80,
+        horizontal: 32,
+      ),
+      content: Text(msg),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
