@@ -8,7 +8,12 @@ class CardPage extends StatefulWidget {
   final MateriaModel materia;
   final List<dynamic> questao;
   final List<dynamic> descricao;
-  const CardPage({Key? key, required this.materia, required this.questao, required this.descricao}) : super(key: key);
+  const CardPage(
+      {Key? key,
+      required this.materia,
+      required this.questao,
+      required this.descricao})
+      : super(key: key);
 
   @override
   State<CardPage> createState() => _CardPageState();
@@ -65,7 +70,8 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (widget.questao.length - 1)) {
+                                        if (index <
+                                            (widget.questao.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -182,7 +188,8 @@ class _CardPageState extends State<CardPage> {
                                   GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                        if (index < (widget.questao.length - 1)) {
+                                        if (index <
+                                            (widget.questao.length - 1)) {
                                           index++;
                                         } else {
                                           index = 0;
@@ -329,10 +336,10 @@ class _CardPageState extends State<CardPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            const Text(
-                              'Você acertou 10 de 60 tópicos.',
+                            Text(
+                              'Você acertou 1 de ${widget.questao.length} tópicos.',
                               textAlign: TextAlign.left,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
@@ -357,9 +364,9 @@ class _CardPageState extends State<CardPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            const Text(
-                              'Você está revisando 0 de 60 tópicos.',
-                              style: TextStyle(
+                            Text(
+                              'Você está revisando 0 de ${widget.questao.length} tópicos.',
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
@@ -383,9 +390,9 @@ class _CardPageState extends State<CardPage> {
                       Expanded(
                         child: Column(
                           children: [
-                            const Text(
-                              'Você acertou 0 de 60 tópicos.',
-                              style: TextStyle(
+                            Text(
+                              'Você acertou 0 de ${widget.questao.length} tópicos.',
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
