@@ -17,21 +17,25 @@ class _HomeListItemState extends State<HomeListItem> {
   late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
   late List<dynamic> perguntasArr = [];
   late List<dynamic> descricaoArr = [];
-  late int qtdTopicos = 7;
+  late int qtdTopicos = 0;
 
   @override
   Widget build(BuildContext context) {
-    futureList.then(
-      (value) {
-        for (var element in value) {
-          if (element.idMateria == widget.materias.id) {
-            perguntasArr.add(element.pergunta);
-            descricaoArr.add(element.descricao);
+    setState(() {
+      futureList.then(
+        (value) {
+          for (var element in value) {
+            if (element.idMateria == widget.materias.id) {
+              perguntasArr.add(element.pergunta);
+              descricaoArr.add(element.descricao);
+            }
           }
-        }
-        setState(() {});
-      },
-    );
+          qtdTopicos = perguntasArr.length;
+          
+        },
+      );
+    });
+
     // qtdTopicos = perguntasArr.length;
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
