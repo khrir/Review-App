@@ -44,7 +44,7 @@ class _CardFormState extends State<CardForm> {
                         children: [
                           const Center(
                             child: Padding(
-                              padding: EdgeInsets.only(top: 7),
+                              padding: EdgeInsets.only(top: 7, left: 10),
                               child: Text(
                                 "Adicionar questão",
                                 textScaleFactor: 2,
@@ -58,7 +58,7 @@ class _CardFormState extends State<CardForm> {
                             },
                             icon: const Icon(
                               Icons.arrow_back_ios,
-                              size: 25,
+                              size: 20,
                               color: Colors.white,
                             ),
                           ),
@@ -98,7 +98,7 @@ class _CardFormState extends State<CardForm> {
                               children: [
                                 SizedBox(
                                   height: 35,
-                                  width: 300,
+                                  width: 250,
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -140,7 +140,7 @@ class _CardFormState extends State<CardForm> {
                               children: [
                                 SizedBox(
                                   height: 35,
-                                  width: 300,
+                                  width: 250,
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -181,7 +181,7 @@ class _CardFormState extends State<CardForm> {
                               children: [
                                 SizedBox(
                                   height: 35,
-                                  width: 300,
+                                  width: 250,
                                   child: TextFormField(
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
