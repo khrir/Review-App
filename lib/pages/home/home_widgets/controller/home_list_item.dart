@@ -14,46 +14,33 @@ class HomeListItem extends StatefulWidget {
 }
 
 class _HomeListItemState extends State<HomeListItem> {
-  // late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
   late List<dynamic> perguntasArr = [];
   late List<dynamic> descricaoArr = [];
   late int qtdTopicos = 0;
 
+  List<QuestionModel> _questoesList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadQuestoes();
+  }
+
+  _loadQuestoes() async {
+    _questoesList = await QuestaoDao().listarQuestoes();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    setState(() {
-      Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
-      futureList.then(
-        (value) {
-          for (var element in value) {
-            if (element.materiaName == widget.materias.name) {
-              perguntasArr.add(element.pergunta);
-              descricaoArr.add(element.descricao);
-              qtdTopicos++;
-            }
-          }
-        },
-      ).whenComplete(() => qtdTopicos);
-      // FutureBuilder<List<QuestionModel>>(
-      //   future: futureList,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       List<QuestionModel> listaMateria = snapshot.data ?? [];
+    for (var el in _questoesList) {
+      if (el.materiaName == widget.materias.name) {
+        perguntasArr.add(el.pergunta);
+        descricaoArr.add(el.descricao);
+        qtdTopicos++;
+      }
+    }
 
-      //       for (var element in listaMateria) {
-      //         if (element.materiaName == widget.materias.name) {
-      //           perguntasArr.add(element.pergunta);
-      //           descricaoArr.add(element.descricao);
-      //           qtdTopicos++;
-      //         }
-      //       }
-      //     }
-      //     return const Center(child: CircularProgressIndicator());
-      //   },
-      // );
-    });
-
-    // qtdTopicos = perguntasArr.length;
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: Column(
@@ -93,41 +80,41 @@ class _HomeListItemState extends State<HomeListItem> {
             ),
           ),
           Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 227, 226, 226),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(7),
-                  bottomRight: Radius.circular(7),
-                ),
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 227, 226, 226),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(7),
+                bottomRight: Radius.circular(7),
               ),
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) => CardPage(
-                                      materia: widget.materias,
-                                      questao: perguntasArr,
-                                      descricao: descricaoArr,
-                                    )));
-                      },
-                      child: const Center(
-                        child: Text(
-                          "Praticar",
-                          style: TextStyle(
-                              fontSize: 22,
-                              color: Color.fromRGBO(57, 57, 57, 1)),
-                        ),
+            ),
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => CardPage(
+                                    materia: widget.materias,
+                                    questao: perguntasArr,
+                                    descricao: descricaoArr,
+                                  )));
+                    },
+                    child: const Center(
+                      child: Text(
+                        "Praticar",
+                        style: TextStyle(
+                            fontSize: 22, color: Color.fromRGBO(57, 57, 57, 1)),
                       ),
                     ),
-                  )
-                ],
-              )),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
