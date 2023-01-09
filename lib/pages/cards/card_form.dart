@@ -1,7 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:review_app/data/db_helper.dart';
+import 'package:review_app/data/materia_dao.dart';
 import 'package:review_app/data/questao_dao.dart';
+import 'package:review_app/models/materia_model.dart';
 import 'package:review_app/models/question_model.dart';
+import 'package:review_app/pages/cards/card_materia.dart';
+import 'package:review_app/pages/home/home.dart';
 
 class CardForm extends StatefulWidget {
   const CardForm({Key? key}) : super(key: key);
@@ -13,12 +18,51 @@ class _CardFormState extends State<CardForm> {
   final _formKey = GlobalKey<FormState>();
   final _perguntaController = TextEditingController();
   final _descricaoController = TextEditingController();
-  final _idMateriaController = TextEditingController();
-  final dbHelper = DBHelper();
+
+  List<MateriaModel> _materiaList = [];
+  String selectedMateria = '';
+
+  void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+        top: Radius.circular(30),
+      )),
+      backgroundColor: Colors.white70,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.4,
+        maxChildSize: 0.6,
+        minChildSize: 0.32,
+        builder: (context, scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          child: const MateriaModalPage(),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMateriaCategories();
+  }
+
+  _loadMateriaCategories() async {
+    _materiaList = await MateriaDao().listarMaterias();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(131, 90, 2, 131),
+        onPressed: () => _showModalBottomSheet(context),
+        child: const Icon(Icons.add),
+      ),
       body: Container(
         padding: const EdgeInsets.only(top: 20, left: 45, right: 45),
         decoration: const BoxDecoration(
@@ -170,7 +214,7 @@ class _CardFormState extends State<CardForm> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: const [
                                   Text(
-                                    "Id da matéria",
+                                    "Matéria",
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -182,24 +226,23 @@ class _CardFormState extends State<CardForm> {
                                 SizedBox(
                                   height: 35,
                                   width: 250,
-                                  child: TextFormField(
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Campo id obrigatório';
-                                      }
-                                      return null;
+                                  child: DropdownButton<String>(
+                                    hint: const Text('Nome da materia'),
+                                    items: _materiaList
+                                        .map<DropdownMenuItem<String>>((val) {
+                                      return DropdownMenuItem(
+                                        value: val.name,
+                                        child: Text(val.name),
+                                      );
+                                    }).toList(),
+                                    value: selectedMateria.isNotEmpty
+                                        ? selectedMateria
+                                        : null,
+                                    onChanged: (newValue) async {
+                                      setState(() {
+                                        selectedMateria = newValue!;
+                                      });
                                     },
-                                    controller: _idMateriaController,
-                                    decoration: const InputDecoration(
-                                      fillColor: Colors.white,
-                                      filled: true,
-                                      hintText: "Digite o id da matéria",
-                                      hintStyle:
-                                          TextStyle(color: Colors.black54),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(8))),
-                                    ),
                                   ),
                                 ),
                               ],
@@ -245,16 +288,19 @@ class _CardFormState extends State<CardForm> {
     if (_formKey.currentState!.validate()) {
       String perguntaDigitada = _perguntaController.text;
       String descricaoDigitada = _descricaoController.text;
-      int idMateriaDigitada = int.parse(_idMateriaController.text);
+      String materiaDigitadaName = selectedMateria;
 
       QuestionModel questaoInserida = QuestionModel(
           pergunta: perguntaDigitada,
           descricao: descricaoDigitada,
-          idMateria: idMateriaDigitada);
+          materiaName: materiaDigitadaName);
       await QuestaoDao().salvarQuestao(questao: questaoInserida);
 
       showSnackBar('A questão foi salva com sucesso!', context);
-      Navigator.pop(context);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const HomePage()));
     } else {
       showSnackBar("Erro na validação", context);
     }

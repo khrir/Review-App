@@ -14,7 +14,7 @@ class HomeListItem extends StatefulWidget {
 }
 
 class _HomeListItemState extends State<HomeListItem> {
-  late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
+  // late Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
   late List<dynamic> perguntasArr = [];
   late List<dynamic> descricaoArr = [];
   late int qtdTopicos = 0;
@@ -22,18 +22,35 @@ class _HomeListItemState extends State<HomeListItem> {
   @override
   Widget build(BuildContext context) {
     setState(() {
+      Future<List<QuestionModel>> futureList = QuestaoDao().listarQuestoes();
       futureList.then(
         (value) {
           for (var element in value) {
-            if (element.idMateria == widget.materias.id) {
+            if (element.materiaName == widget.materias.name) {
               perguntasArr.add(element.pergunta);
               descricaoArr.add(element.descricao);
+              qtdTopicos++;
             }
           }
-          qtdTopicos = perguntasArr.length;
-          
         },
-      );
+      ).whenComplete(() => qtdTopicos);
+      // FutureBuilder<List<QuestionModel>>(
+      //   future: futureList,
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       List<QuestionModel> listaMateria = snapshot.data ?? [];
+
+      //       for (var element in listaMateria) {
+      //         if (element.materiaName == widget.materias.name) {
+      //           perguntasArr.add(element.pergunta);
+      //           descricaoArr.add(element.descricao);
+      //           qtdTopicos++;
+      //         }
+      //       }
+      //     }
+      //     return const Center(child: CircularProgressIndicator());
+      //   },
+      // );
     });
 
     // qtdTopicos = perguntasArr.length;
@@ -60,7 +77,7 @@ class _HomeListItemState extends State<HomeListItem> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text("0 de $qtdTopicos tópicos revisados"),
+                Text("0 de ${perguntasArr.length} tópicos revisados"),
                 // Add progress bar
                 const SizedBox(height: 15),
                 const SizedBox(

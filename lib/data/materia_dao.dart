@@ -21,4 +21,10 @@ class MateriaDao {
     return lista;
   }
 
+  salvarMateria({required MateriaModel materia}) async {
+    DBHelper dbHelper = DBHelper();
+    Database database = await dbHelper.initDB();
+
+    await database.insert('materia', materia.toJson());
+  }
 }
