@@ -20,6 +20,8 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
+  int qtdAcertos = 0;
+  int qtdErros = 0;
   var index = 0;
 
   @override
@@ -261,7 +263,14 @@ class _CardPageState extends State<CardPage> {
                                   children: [
                                     Expanded(
                                       child: GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            if (qtdAcertos <
+                                                widget.questao.length) {
+                                              qtdAcertos++;
+                                            }
+                                          });
+                                        },
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             color: Colors.green,
@@ -285,7 +294,14 @@ class _CardPageState extends State<CardPage> {
                                     ),
                                     Expanded(
                                       child: GestureDetector(
-                                        onTap: () {},
+                                        onTap: () {
+                                          setState(() {
+                                            if (qtdErros <
+                                                widget.questao.length) {
+                                              qtdErros++;
+                                            }
+                                          });
+                                        },
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.only(
@@ -337,7 +353,7 @@ class _CardPageState extends State<CardPage> {
                         child: Column(
                           children: [
                             Text(
-                              'Você acertou 1 de ${widget.questao.length} tópicos.',
+                              'Você acertou $qtdAcertos de ${widget.questao.length} tópicos.',
                               textAlign: TextAlign.left,
                               style: const TextStyle(
                                 color: Colors.white,
@@ -355,7 +371,7 @@ class _CardPageState extends State<CardPage> {
                                 valueColor:
                                     const AlwaysStoppedAnimation(Colors.green),
                                 minHeight: 40,
-                                value: 0.16,
+                                value: ((qtdAcertos) / widget.questao.length),
                               ),
                             ),
                           ],
@@ -365,7 +381,7 @@ class _CardPageState extends State<CardPage> {
                         child: Column(
                           children: [
                             Text(
-                              'Você está revisando 0 de ${widget.questao.length} tópicos.',
+                              'Você está revisando ${index + 1} de ${widget.questao.length} tópicos.',
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
@@ -381,7 +397,7 @@ class _CardPageState extends State<CardPage> {
                                 valueColor:
                                     const AlwaysStoppedAnimation(Colors.green),
                                 minHeight: 40,
-                                value: 0,
+                                value: ((index + 1) / widget.questao.length),
                               ),
                             ),
                           ],
@@ -391,7 +407,7 @@ class _CardPageState extends State<CardPage> {
                         child: Column(
                           children: [
                             Text(
-                              'Você acertou 0 de ${widget.questao.length} tópicos.',
+                              'Você errou $qtdErros de ${widget.questao.length} tópicos.',
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
@@ -407,7 +423,7 @@ class _CardPageState extends State<CardPage> {
                                 valueColor:
                                     const AlwaysStoppedAnimation(Colors.green),
                                 minHeight: 40,
-                                value: 0,
+                                value: ((qtdErros) / widget.questao.length),
                               ),
                             ),
                           ],

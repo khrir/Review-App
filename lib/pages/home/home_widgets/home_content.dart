@@ -31,8 +31,16 @@ class _HomePageContentState extends State<HomePageContent> {
       child: Column(
         children: [
           Expanded(
-            child: buildListView(),
-          ),
+            child: SingleChildScrollView(
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center, 
+                  children: [
+                    Stack(
+                      children: [Center(child: buildListView(),)],
+                    ),
+                  ],),
+            ),
+          )
         ],
       ),
     );
