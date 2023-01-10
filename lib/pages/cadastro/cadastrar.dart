@@ -1,7 +1,9 @@
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:review_app/data/user_dao.dart';
 import 'package:review_app/pages/login/login_screen.dart';
+import 'package:review_app/service/api/cep_api.dart';
 
 import '../../models/user.dart';
 
@@ -15,17 +17,27 @@ class Cadastrar extends StatefulWidget {
 class _CadastrarState extends State<Cadastrar> {
   final _conUserEmail = TextEditingController();
   final _conUserPassword = TextEditingController();
+  final _conUserCep = MaskedTextController(mask: "00000-000");
+  final _conUsercity = TextEditingController();
+  final _conUserState = TextEditingController();
+
   final userDao = UserDao();
+  final apiCEP = ApiCEP();
 
   Future<bool> signUp() async {
-    if (_conUserEmail.text != '' && _conUserPassword.text != '') {
-      await userDao
-          .createUser(
-            User(
-              email: _conUserEmail.text,
-              password: _conUserPassword.text,
-            ),
-          );
+    if (_conUserEmail.text != '' &&
+        _conUserPassword.text != '' &&
+        _conUserCep.text.length > 8 &&
+        _conUsercity.text != '' &&
+        _conUserState.text != '') {
+      await userDao.createUser(
+        User(
+          email: _conUserEmail.text,
+          password: _conUserPassword.text,
+          city: _conUsercity.text,
+          state: _conUserState.text,
+        ),
+      );
       return true;
     }
     return false;
@@ -107,7 +119,6 @@ class _CadastrarState extends State<Cadastrar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 35,
                             width: 300,
                             child: TextField(
                               controller: _conUserEmail,
@@ -116,6 +127,123 @@ class _CadastrarState extends State<Cadastrar> {
                                 filled: true,
                                 focusColor: Colors.white,
                                 hintText: "Digite seu email",
+                                hintStyle: TextStyle(color: Colors.black54),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 40, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Endereço",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            child: TextField(
+                              controller: _conUserCep,
+                              maxLength: 9,
+                              keyboardType: TextInputType.number,
+                              onChanged: (value) => {
+                                if (value.length == 9)
+                                  {
+                                    apiCEP.getAdressByCEP(value).then(
+                                          (value) => {
+                                            setState(
+                                              () {
+                                                _conUsercity.text =
+                                                    value['city'];
+                                                _conUserState.text =
+                                                    value['state'];
+                                              },
+                                            ),
+                                          },
+                                        ),
+                                  }
+                              },
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: "Digite um CEP válido",
+                                hintStyle: TextStyle(color: Colors.black54),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 35, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Cidade",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            child: TextField(
+                              controller: _conUsercity,
+                              enabled: false,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: "Cidade",
+                                hintStyle: TextStyle(color: Colors.black54),
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8))),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 35, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "Estado",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: 300,
+                            child: TextField(
+                              enabled: false,
+                              controller: _conUserState,
+                              decoration: const InputDecoration(
+                                fillColor: Colors.white,
+                                filled: true,
+                                hintText: "Estado",
                                 hintStyle: TextStyle(color: Colors.black54),
                                 border: OutlineInputBorder(
                                     borderRadius:
@@ -141,7 +269,6 @@ class _CadastrarState extends State<Cadastrar> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 35,
                             width: 300,
                             child: TextField(
                               controller: _conUserPassword,

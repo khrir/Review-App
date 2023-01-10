@@ -18,9 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<bool> signIn() async {
     if (_emailController.text != '' && _passwordController.text != '') {
-      await userDao
-          .login(_emailController.text, _passwordController.text)
-          .then(
+      await userDao.login(_emailController.text, _passwordController.text).then(
             (value) => {
               if (value.id != null)
                 {
@@ -53,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
         ),
-        child: Column(
+        child: ListView(
           children: [
             Stack(
               children: [
@@ -107,7 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 35,
                   width: 300,
                   child: TextField(
                     controller: _emailController,
@@ -140,7 +137,6 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 35,
                   width: 300,
                   child: TextField(
                     controller: _passwordController,
