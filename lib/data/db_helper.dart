@@ -19,8 +19,7 @@ class DBHelper {
   }
 
   Future<FutureOr<void>> onCreate(Database db, int version) async {
-    String sql = 
-      '''
+    String sql = '''
       CREATE TABLE materia (
         id INTEGER PRIMARY KEY, 
         name  VARCHAR(100));
@@ -33,8 +32,7 @@ class DBHelper {
     sql = "INSERT INTO materia (name) VALUES ('História');";
     await db.execute(sql);
 
-    sql = 
-      '''
+    sql = '''
       CREATE TABLE questao (
         id INTEGER PRIMARY KEY,
         pergunta VARCHAR(100), 
@@ -56,17 +54,18 @@ class DBHelper {
         "INSERT INTO questao (pergunta, descricao, materiaName) VALUES ('Quem disse: Já se foi o disco voador?', 'Chaves', 'História');";
     await db.execute(sql);
 
-    sql = 
-      '''
+    sql = '''
       CREATE TABLE user (
         id INTEGER PRIMARY KEY, 
         email VARCHAR(100), 
-        password VARCHAR(30));
+        password VARCHAR(30),
+        city VARCHAR(100),
+        state VARCHAR(100));
       ''';
     await db.execute(sql);
 
     sql =
-    "CREATE TABLE logged_user (id INTEGER PRIMARY KEY, email VARCHAR(100), password VARCHAR(30))";
+        "CREATE TABLE logged_user (id INTEGER PRIMARY KEY, email VARCHAR(100), password VARCHAR(30))";
     await db.execute(sql);
 
     sql =
