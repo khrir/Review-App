@@ -16,7 +16,7 @@ class DBHelper {
 
   initDB() async {
     String path = await getDatabasesPath();
-    String dbPath = join(path, "power-ranger7.db");
+    String dbPath = join(path, "power-ranger8.db");
 
     Database db = await openDatabase(
       dbPath,
@@ -70,16 +70,20 @@ class DBHelper {
       ''';
     await db.execute(sql);
 
-    for (var element in usuarios){
+    for (var element in usuarios) {
       sql =
-        "INSERT INTO user (email, password, city, state) VALUES ('${element.email}', '${element.password}', '${element.city}', '${element.state}')";
+          "INSERT INTO user (email, password, city, state) VALUES ('${element.email}', '${element.password}', '${element.city}', '${element.state}')";
       await db.execute(sql);
     }
 
-    sql =
-        "CREATE TABLE logged_user (id INTEGER PRIMARY KEY, email VARCHAR(100), password VARCHAR(30))";
+    sql = '''
+        CREATE TABLE logged_user (
+          id INTEGER PRIMARY KEY, 
+          email VARCHAR(100), 
+          password VARCHAR(30),
+          city VARCHAR(100),
+          state VARCHAR(100));
+        ''';
     await db.execute(sql);
-
-    
   }
 }

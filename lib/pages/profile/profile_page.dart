@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:review_app/data/user_dao.dart';
+import 'package:review_app/models/user.dart';
 import 'package:review_app/pages/home/home_widgets/app_bar/app_bar.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -9,8 +11,29 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  List<User> _loggedUser = [];
+  String email = '';
+  String city = '';
+  String state = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLoggedUser();
+  }
+
+  _loadLoggedUser() async {
+    _loggedUser = await UserDao().listarLoggedUser();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    for (var element in _loggedUser){
+      email = element.email;
+      city = element.city;
+      state = element.state;
+    }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 182, 1, 202),
       appBar: getHomeAppBar(),
@@ -42,9 +65,9 @@ class _ProfilePageState extends State<ProfilePage> {
                       const SizedBox(
                         height: 10.0,
                       ),
-                      const Text(
-                        "Maísa Lira",
-                        style: TextStyle(
+                      Text(
+                        email,
+                        style: const TextStyle(
                           fontSize: 22.0,
                           color: Color.fromARGB(255, 253, 252, 255),
                         ),
@@ -125,10 +148,10 @@ class _ProfilePageState extends State<ProfilePage> {
                             children: [
                               Expanded(
                                 child: Column(
-                                  children: const [
+                                  children: [
                                     Text(
-                                      "Bio: Sou alagoana e tenho 19 anos.  Sou aluna do quarto ano de informática no ensino técnico do IFAL.",
-                                      style: TextStyle(
+                                      "Bio: o meu e-mail é $email, moro na cidade $city - $state.",
+                                      style: const TextStyle(
                                           fontStyle: FontStyle.italic,
                                           color:
                                               Color.fromARGB(255, 146, 81, 221),

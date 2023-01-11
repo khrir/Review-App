@@ -34,6 +34,23 @@ class UserDao{
     }
   }
 
+  Future<List<User>> listarLoggedUser() async {
+    DBHelper dbHelper = DBHelper();
+    Database db = await dbHelper.initDB();
+
+    String sql = 'SELECT * FROM logged_user';
+    final result = await db.rawQuery(sql);
+
+    List<User> lista = <User>[];
+
+    for (var json in result) {
+      User usuario = User.fromJson(json);
+      lista.add(usuario);
+    }
+
+    return lista;
+  }
+
   Future<bool> logout() async {
     DBHelper dbHelper = DBHelper();
     Database db = await dbHelper.initDB();
