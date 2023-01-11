@@ -1,4 +1,4 @@
-#Sun Jan 08 22:38:44 BRT 2023
+#Wed Jan 11 01:47:52 BRT 2023
 base.0=/home/khrir/Documents/Repositorios/Review-App/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
