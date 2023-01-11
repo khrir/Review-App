@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:review_app/data/user_dao.dart';
+import 'package:review_app/global_properties.dart';
 import 'package:review_app/pages/cadastro/cadastrar.dart';
 import 'package:review_app/pages/home/home.dart';
+import 'package:review_app/widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -38,26 +40,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.only(top: 20, left: 45, right: 45),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF2C0469),
-              Color.fromARGB(255, 182, 1, 202),
-            ],
-          ),
-        ),
-        child: ListView(
+      body: GlobalProperties().builBackGround(
+        ListView(
           children: [
             Stack(
               children: [
                 const Center(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 7),
+                    padding: EdgeInsets.only(top: 09),
                     child: Text(
                       "Login",
                       textScaleFactor: 2,
@@ -81,16 +75,19 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 35.0),
+                  padding: EdgeInsets.only(top: height * 0.07),
                   child: Image.asset(
                     "assets/review-logo.png",
-                    height: 125,
+                    height: height * 0.17,
                   ),
                 )
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 10),
+              padding: EdgeInsets.only(
+                top: height * 0.03,
+                bottom: height * 0.01,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -105,24 +102,20 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      focusColor: Colors.white,
-                      hintText: "Digite seu email",
-                      hintStyle: TextStyle(color: Colors.black54),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                    ),
+                  width: width * 0.75,
+                  child: customTextField(
+                    "Digite seu email",
+                    _emailController,
+                    false,
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 35, bottom: 10),
+              padding: EdgeInsets.only(
+                top: height * 0.05,
+                bottom: height * 0.01,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -137,18 +130,11 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 300,
-                  child: TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      hintText: "Digite sua senha",
-                      hintStyle: TextStyle(color: Colors.black54),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(8))),
-                    ),
+                  width: width * 0.75,
+                  child: customTextField(
+                    "Digite sua senha",
+                    _passwordController,
+                    true,
                   ),
                 ),
               ],
@@ -157,12 +143,12 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30.0),
+                  padding: EdgeInsets.only(top: height * 0.07),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 50,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.15,
                       ),
                     ),
                     onPressed: () => {
@@ -183,8 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Container(
                   width: 200,
-                  padding: const EdgeInsets.only(top: 30),
-                  // ignore: prefer_const_constructors
+                  padding: EdgeInsets.only(top: height * 0.06),
                   child: Text.rich(
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -207,6 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                           style: const TextStyle(
                             decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],

@@ -7,7 +7,7 @@ import 'package:sqflite/sqflite.dart';
 class DBHelper {
   initDB() async {
     String path = await getDatabasesPath();
-    String dbPath = join(path, "review-card.db");
+    String dbPath = join(path, "dev-review-card.db");
 
     Database db = await openDatabase(
       dbPath,
